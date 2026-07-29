@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace DoNut
 
         private static void Main(string[] args)
         {
-            _patchName = Prompt("Patch folder name (for example, \"c0patch\"): ");
+            _patchName = args.Length > 0 ? args[0] : Prompt("Patch folder name (for example, \"c0patch\"): ");
 
             string mainJsonPath = $"{_patchName}_info.json";
 
@@ -58,7 +58,7 @@ namespace DoNut
         private static string Prompt(string prompt)
         {
             Console.Write(prompt);
-            return Console.ReadLine();
+            return Console.ReadLine()?.TrimStart('\uFEFF');
         }
 
         public class ArchiveInfo
